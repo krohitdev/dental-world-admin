@@ -21,7 +21,7 @@ export class DashboardService extends BaseService {
     public notificationService: NotificationsService,
 
   ) {
-    super(environment.BaseURL+environment.AdminAPI.ngo,http,router,notificationService);
+    super(environment.BaseURL+environment.AdminAPI.user,http,router,notificationService);
   }
 
   getQuiz(quiz?,date?){

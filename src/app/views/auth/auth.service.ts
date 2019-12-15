@@ -26,7 +26,7 @@ export class AuthService extends BaseService {
     // public spinner: NgxSpinnerService,
   ) {
     super(
-      environment.BaseURL+environment.AdminAPI.ngo,
+      environment.BaseURL+environment.AdminAPI.user,
       http,router,
       notificationService
     );
@@ -47,7 +47,7 @@ export class AuthService extends BaseService {
    *  @Return:  login token
    */
   login(payload): Observable<any> {
-    return this.http.post<any>(environment.BaseURL + environment.AdminAPI.login, payload)
+    return this.http.post<any>(environment.BaseURL + environment.AdminAPI, payload)
     .pipe(
       map(data => {
 

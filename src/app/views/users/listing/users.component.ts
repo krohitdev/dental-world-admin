@@ -240,11 +240,11 @@ export class UsersComponent implements OnInit {
   }
 
   downloadUserCSV():void{
-    this.fetchService(`${environment.BaseURL}${environment.AdminAPI.userCSV}`,'userlists.csv');
+    this.fetchService(`${environment.BaseURL}${environment.AdminAPI.oneUser}`,'userlists.csv');
   }
 
   downloadUserBankData():void{
-    this.fetchService(`${environment.BaseURL}${environment.AdminAPI.bankCSV}`,'banklist.csv')
+    this.fetchService(`${environment.BaseURL}${environment.AdminAPI.user}`,'banklist.csv')
   }
 
 

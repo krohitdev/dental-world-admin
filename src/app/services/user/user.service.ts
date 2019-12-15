@@ -43,7 +43,7 @@ export class UserService extends BaseService {
       }
       case "4": {
         // this.transferAccount();
-        url = environment.AdminAPI.bankDetails;
+        url = environment.AdminAPI.user;
         break;
       }
     } 
@@ -71,7 +71,7 @@ export class UserService extends BaseService {
 
   updateUserStatus(payload): Observable<any> {
     return this.http
-      .post<any>(this.baseUrl + environment.AdminAPI.userStatus,payload ,{
+      .post<any>(this.baseUrl + environment.AdminAPI.user,payload ,{
         // headers: this.token(),
         responseType: 'json'
       })
@@ -122,7 +122,7 @@ export class UserService extends BaseService {
   
   search(payload): Observable<any> {
     return this.http
-      .post<any>(this.baseUrl + environment.AdminAPI.search,payload ,{
+      .post<any>(this.baseUrl + environment.AdminAPI.user,payload ,{
         // headers: this.token(),
         responseType: 'json'
       })
