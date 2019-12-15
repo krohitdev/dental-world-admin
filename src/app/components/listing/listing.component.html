@@ -1,0 +1,202 @@
+<div class="responsive-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" >
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+   
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container> -->
+    
+    <div *ngFor="let disCol of displayedColumns;let colIndex = index">
+      <ng-container matColumnDef="{{disCol}}">
+          
+        <div *ngIf="fieldName[0][disCol] === 'Action' && moduleName == 'NGO for Activations'">
+          <th mat-header-cell *matHeaderCellDef style="width: 80px;padding-right: 20px;padding-top: 15px;"
+          >Approve</th>
+        </div>
+          
+        <div>
+          <th 
+            mat-header-cell 
+            *matHeaderCellDef 
+            mat-sort-header
+            style="width: 80px;padding-right: 20px;padding-top: 15px;"
+            matTooltip="{{ fieldName[0][disCol] }}"
+           
+          > {{ fieldName[0][disCol] }} </th>
+        </div>
+        
+        <div *ngIf="disCol === 'mobileNumber' && moduleName == 'Users'" >
+          <td  mat-cell *matCellDef="let element" matTooltip="{{element[disCol] && element[disCol]['number'] ? element[disCol]['number'] : 'N/A'}}">
+              {{ element[disCol]['number'] }}
+          </td>
+        </div>
+
+        <div *ngIf="disCol === 'mobileNumber' && moduleName == 'Winner'" >
+          <td  mat-cell *matCellDef="let element" matTooltip="{{element[disCol] ? element[disCol]['number'] : 'N/A'}}">
+              {{ element[disCol] && element[disCol]['number'] }}
+          </td>
+        </div>
+
+        <div *ngIf="disCol === 'updatedAt' && moduleName == 'Winner'" >
+            <td mat-cell *matCellDef="let element" matTooltip="{{element[disCol]}}">
+                {{ element[disCol] | date:'dd-MM-yyyy' }}
+            </td>
+        </div>
+        
+        <div *ngIf="disCol === 'expiryDate' && moduleName == 'Advertisements'" >
+          <td mat-cell *matCellDef="let element" matTooltip="{{element[disCol]}}">
+              {{ element[disCol] | date:'dd-MM-yyyy hh:mm' }}
+          </td>
+        </div>
+      
+
+        <div *ngIf="disCol === 'finalRedeemAmount' && moduleName == 'Winner'" >
+            <td mat-cell *matCellDef="let element" matTooltip="{{element[disCol]}}">
+                {{ element[disCol] ?  element[disCol] : 'N/A' }}
+            </td>
+        </div>
+
+        <div *ngIf="disCol === 'isDonateToNgo' && moduleName == 'Winner'" >
+            <td mat-cell *matCellDef="let element" matTooltip="{{element[disCol]}}">
+                {{ element[disCol] ?  'Yes' : 'No' }}
+            </td>
+        </div>
+
+        <div *ngIf="disCol === 'isWinnerPrizeRedeem' && moduleName == 'Winner'" >
+            <td mat-cell *matCellDef="let element" matTooltip="{{element[disCol]}}">
+                {{ element[disCol] ?  'Yes' : 'No' }}
+            </td>
+        </div> 
+
+        <div *ngIf="disCol === 'username' && moduleName == 'Users'" >
+          <td  mat-cell *matCellDef="let row"  matTooltip="{{ row.username }}"> 
+             <a (click)="getRowInfo(row)"> {{ row.username }}</a>
+          </td>
+        </div>
+
+        <div *ngIf="disCol === 'username' && moduleName == 'Winner'" >
+          <td  mat-cell *matCellDef="let row">
+              <a (click)="getRowInfo(row)"> {{ row.username }}</a>
+          </td>
+        </div>
+
+        
+        <div *ngIf="disCol === 'advImage'" >
+          <td mat-cell *matCellDef="let element">
+              <!-- {{ element[disCol].number }} -->
+              <img src="{{element[disCol]}}" class="img-thumbnail img" alt="Image not load"/>
+          </td>
+        </div>
+
+        <div *ngIf="disCol === 'websiteLink'">
+          <td mat-cell *matCellDef="let element" class="globe-icon">
+            <a href="http://{{element[disCol]}}" target="_blank"><span class="fa fa-globe fa-lg"></span></a>
+          </td>
+        </div>
+
+        <div *ngIf="disCol === 'Action'">
+          <td mat-cell *matCellDef="let row">
+            <i *ngIf="editIcon==true" class="fa fa-edit fa-lg icon" style="margin-right:8px; cursor: pointer;"
+              area-hidden="true" [ngStyle]="{'color': row.isActive === false ? 'grey' : 'black' }"
+              (click)="row.isActive === true ? onEditConfirm(row._id || row.advId || row.brandId) : false"></i>
+
+            <i *ngIf="viewIcon==true" class="fa fa-eye fa-lg icon" style="margin-right:8px; cursor: pointer;"
+              (click)="getRowInfo(row)" aria-hidden="true">
+            </i>
+
+            <i *ngIf="deleteIcon==true" class="fa fa-trash fa-lg icon"
+              [ngStyle]="{'color': row.isDeleted === true ? 'grey' : 'black' }" area-hidden="true"
+              style="cursor:pointer;" (click)="row.isDeleted ===false ? onDeleteConfirm(delete,row._id) : false"></i>
+
+            <span *ngIf="popupIcon==true" class="fa-stack icon"
+              [ngStyle]="{'color': row.isDeleted === true ? 'grey' : 'black' }" style="cursor:pointer;"
+              (click)="row.isDeleted ===false ? onOpenRatingPopup(RatingModal,row) : false">
+              <i class="fa fa-square-o" style="position:absolute;left:0;bottom:-12%;font-size:1.7em"></i>
+              <i class="fa fa-square fa-inverse" style="position:absolute;right:0;top:-6%;font-size:1.7em"></i>
+              <i class="fa fa-external-link-square" style="position:absolute;right:0;top:-6%;font-size:1.7em"></i>
+            </span>
+
+            <i *ngIf="chatIcon==true" class="fa fa-comments fa-lg icon" area-hidden="true" style="cursor:pointer;"
+              (click)="onOpenChat(ChatModel,row)"></i>
+            
+            <i *ngIf="row.status=='completed'" class="fa fa-file fa-lg icon" style="margin-left:8px; cursor: pointer;"
+              (click)="openUploadModal(row)" aria-hidden="true" [ngStyle]="{'color': row.status === 'completed' ? 'black' : 'grey' }">
+            </i>
+
+            <i *ngIf="fileIcon==true" class="fa fa-upload fa-lg" style="margin-right:8px; cursor: pointer;"
+              (click)="openUploadModal(row)" aria-hidden="true" [ngStyle]="{'color': 'black'  }">
+            </i>
+            <i *ngIf="viewReceipt==true" class="fa fa-file fa-lg icon" style="margin-right:8px; cursor: pointer;"
+              (click)="openUploadReceipt(row)" aria-hidden="true" [ngStyle]="{'color': 'black'  }">
+            </i>
+
+            <!-- <i *ngIf="viewReceipt==true" class="fa fa-file fa-lg" style="margin-right:8px; cursor: pointer;"
+            (click)="openUploadReceipt(row)" aria-hidden="true" [ngStyle]="{'color': 'black'  }">
+            </i> -->
+            
+
+            <label class="switch switch-outline-primary-alt switch-area" *ngIf="statusIcon">
+              <input type="checkbox" class="switch-input" (click)="changeStatus(row)" [(ngModel)]="row.isActive">
+              <span class="switch-slider"></span>
+            </label>
+
+            <label class="switch switch-outline-primary-alt switch-area" *ngIf="approveIcon">
+                <input type="checkbox" class="switch-input" (click)="changeStatus(row)" [(ngModel)]="row.isAdminApproved">
+                <span class="switch-slider"></span>
+            </label>
+
+          </td>
+
+        </div>
+        
+        <div>
+          <td mat-cell *matCellDef="let element"  matTooltip="{{element[disCol] ? element[disCol] : 'N/A'}}" > {{ element[disCol]}} </td>
+        </div>
+
+        <!-- <div
+          *ngIf="disCol !== 'username'">
+          <td mat-cell *matCellDef="let element">
+            {{ element[disCol] }}</td>
+        </div> -->
+        
+      </ng-container>
+    </div>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    
+      <!-- noData found Case -->
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef style="white-space: pre; overflow: inherit;">
+          No {{moduleName}} Found
+        </mat-footer-cell>
+      </ng-container>
+    
+      <mat-footer-row *matFooterRowDef="['noData']"
+        [ngClass]="{'hide':!(dataSource!=null && dataSource.length==0)}">
+      </mat-footer-row>  
+    <!-- </div> -->
+  </table>
+</div>
+
+<!-- pagination -->
+<pagination class="pagination-sm" [ngClass]="{'hide': dataSource.length ===0}" [(ngModel)]="page"
+  [totalItems]="totalCount" [itemsPerPage]="10" [maxSize]="10" [boundaryLinks]="true" [rotate]="false"
+  (pageChanged)="onChangePage($event)">
+</pagination>
+
+<!-- <ngb-pagination [collectionSize]="totalCount" [(page)]="page" aria-label="Custom pagination">
+    <ng-template ngbPaginationPrevious>Prev</ng-template>
+    <ng-template ngbPaginationNext>Next</ng-template>
+    <ng-template ngbPaginationNumber let-p>{{ getPageSymbol(p) }}</ng-template>
+</ngb-pagination>
+  
+<pre>Current page: {{page}}</pre> -->
+
+  

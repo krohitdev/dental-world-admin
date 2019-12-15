@@ -1,0 +1,8 @@
+<input 
+    [owlDateTime]="dt2" 
+    [placeholder]="placeholder"
+    class="date-input"
+    [(ngModel)]="defaultDate"
+    (dateTimeChange)="getDate($event)" />
+<span [owlDateTimeTrigger]="dt2" class="date-icon"><i class="fa fa-calendar"></i></span>
+<owl-date-time #dt2></owl-date-time>

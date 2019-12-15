@@ -1,0 +1,44 @@
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+}
+
+.toggle-example{
+  padding-left: unset !important;
+  justify-content: left !important;
+}
+.timepicker{
+  width: 100%;
+  margin-top: 15px;
+  max-width: 400px;
+  border: unset;
+  border-bottom: 0.5px solid grey;
+  padding-bottom: 0em;
+  margin-bottom: 2em;
+}
+
+ngx-material-timepicker-toggle{
+  height: 23px;
+  width: 23px;
+  position: absolute;
+  left: 379px;
+  top: 3px;
+}
+.ngx-material-timepicker-toggle>svg{
+  height: 23px;
+  width: 23px;
+}
+ngx-material-timepicker-toggle button{
+  height: 24px;
+  width: 24px;
+}
+
+input:focus{
+  outline:none;
+}

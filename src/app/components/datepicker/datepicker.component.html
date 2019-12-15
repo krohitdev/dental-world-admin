@@ -1,0 +1,5 @@
+<mat-form-field [class]="className">
+    <input matInput [matDatepicker]="picker" (dateChange)="getDate($event)" [(ngModel)]="defaultDate" placeholder="Select Date" (focus)="picker.open()" readonly >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

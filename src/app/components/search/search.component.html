@@ -1,0 +1,5 @@
+<mat-form-field class="example-full-width search">
+    <input matInput placeholder="Search" [(ngModel)]="searchValue" >
+    <i *ngIf="searchValue.length" class="fa fa-times" aria-hidden="true" (click)="clearSearch()" style="position: absolute;right: 20px;"></i>
+    <i class="fa fa-search" aria-hidden="true" (click)="Search()" style="position: absolute;right: 0px;"></i>
+</mat-form-field>

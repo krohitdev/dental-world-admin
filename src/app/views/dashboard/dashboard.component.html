@@ -1,0 +1,192 @@
+<ngx-spinner [fullScreen] = true type = "line-scale" size = "default"></ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-info">
+        <div class="card-body pb-0">
+          <button type="button" class="btn btn-transparent p-0 float-right">
+            <i class="icon-location-pin"></i>
+          </button>
+          <div class="text-value">Members online</div>
+          <div>98989</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="lineChart2Data"
+          [labels]="lineChart2Labels"
+          [options]="lineChart2Options"
+          [colors]="lineChart2Colours"
+          [legend]="lineChart2Legend"
+          [chartType]="lineChart2Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-primary">
+        <div class="card-body pb-0">
+          <div class="text-value">Members online</div>
+          <div>50</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart"
+                  [datasets]="lineChart1Data"
+                  [labels]="lineChart1Labels"
+                  [options]="lineChart1Options"
+                  [colors]="lineChart1Colours"
+                  [legend]="lineChart1Legend"
+                  [chartType]="lineChart1Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-warning">
+        <div class="card-body pb-0">
+          <div class="text-value">Members online</div>
+          <div>1999</div>
+        </div>
+        <div class="chart-wrapper mt-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="lineChart3Data"
+          [labels]="lineChart3Labels"
+          [options]="lineChart3Options"
+          [colors]="lineChart3Colours"
+          [legend]="lineChart3Legend"
+          [chartType]="lineChart3Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <div class="col-sm-6 col-lg-3">
+      <div class="card text-white bg-danger">
+        <div class="card-body pb-0">
+          <div class="text-value">Members online</div>
+          <div>20000</div>
+        </div>
+        <div class="chart-wrapper mt-3 mx-3" style="height:70px;">
+          <canvas baseChart class="chart"
+          [datasets]="barChart1Data"
+          [labels]="barChart1Labels"
+          [options]="barChart1Options"
+          [colors]="barChart1Colours"
+          [legend]="barChart1Legend"
+          [chartType]="barChart1Type"></canvas>
+        </div>
+      </div>
+    </div><!--/.col-->
+    <!-- Next Row -->
+    
+  </div><!--/.row-->
+
+  <div class="card">
+      <div class="card-body">
+         <div class="row">
+            <div class="col-sm-5">
+               <h4 class="card-title mb-0">{{titleQuiz}}</h4>
+               <div class="small text-muted">-</div>
+            </div>
+            
+
+            <div class="col-md-12 col-lg-12">
+              <app-datepicker
+                [class]="datepickerClass"
+                [value]="quizDate"
+                (dateChange)="filterDateResult($event)">
+                
+              </app-datepicker>
+            </div>
+            
+            <!-- Time Picker  -->
+             <div class="col-md-12 col-lg-12" *ngIf="isQuizTen">
+              <app-timepicker></app-timepicker>
+            </div>
+
+            <div class="col-md-12 col-lg-12">
+                <label>No of Winner : </label>
+                <strong> {{winner}}</strong>
+            </div>
+            <div class="col-md-12 col-lg-12" >
+                <label>No of Losers : </label>
+                <strong>{{loosers}}</strong>
+            </div>
+
+            <div class="col-md-12 col-lg-12" *ngIf="!isQuizLive">
+                <label>Total Slots :</label>
+                <strong>{{slotTotal}}</strong>
+            </div>
+
+            <!--Slot Dropdown -->
+            <!-- <div class="col-md-12 col-lg-12" *ngIf="isQuizTwentyInfinite == true || isQuizFiftyInfinite == true || isQuizCfinite == true">
+                <mat-form-field>
+                    <mat-label>Select Slot No</mat-label>
+                    <mat-select [(value)]="selectedSlot">
+                      <mat-option [disabled]="true">None</mat-option>
+                      <mat-option *ngFor="let slot of totalSlots" value="slot">{{slot}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div> -->
+
+            <div class="col-md-12 col-lg-12" >
+                <label>Total Played : </label>
+                <strong>{{totalUsers}}</strong>
+            </div>
+
+            <div class="col-md-12 col-lg-12" *ngIf="winnerList.length>0"> 
+                <label>Who Won</label>
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                      <tr>
+                        <th>Username</th>
+                        <th>Mobile Number</th>
+                        <th>Win Tola Coins </th>
+                        <th>Slot</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                      </tr>
+                      <tr *ngFor="let winner of winnerList">
+                        
+                            <td><a class="winner-link" routerLink="/users/detail/{{winner.user ? winner.user._id : ''}}">{{ winner.user ? winner.user.username : '' }}</a></td>
+                            <td>{{ winner.user  ? winner.user.mobileNumber.number : '' }}</td>
+                            <td>{{ winner.winningAmount || '' }}</td>
+                            <td>{{ slots.slots[winner.slotId] || '' }}</td>
+                            <td>{{ winner.slotStartTime || '' }}</td>
+                            <td>{{ winner.slotEndTime || '' }}</td>
+                       
+                      </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <!-- <app-table
+                [data] = "winnerList"
+                [moduleName] = "'DashboardWinner'"
+                [fieldName]= "fieldName"
+                [settings] = "settings"
+                [deleteIcon]="deleteIcon"
+                [editIcon]="editIcon"
+                [statusIcon]="statusIcon"
+                (getUser)="getParticularUser($event)"
+                >  
+              </app-table> -->
+            </div>
+
+            <div class="col-md-12 col-lg-12"  *ngIf="isQuizLive">
+                <a class="btn btn-md btn-outline-info btn-winner" href="/#/users#winner">See All Winner</a>
+            </div>
+
+
+         </div>
+      </div>
+      <div class="card-footer">
+         <div class="row text-center">
+            <!-- <div class="col-sm-12 col-md mb-sm-2 mb-0">
+               <div class="text-muted">Visits</div>
+               <strong>No of Winners (40%)</strong>
+               <div class="progress progress-xs mt-2">
+                  <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" class="progress-bar bg-success" role="progressbar" style="width: 40%"></div>
+               </div>
+            </div> -->
+          
+         </div>
+      </div>
+   </div>
+</div>

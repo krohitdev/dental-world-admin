@@ -1,0 +1,35 @@
+.date-input{
+    width: 100%;
+    margin-top: 15px;
+    max-width: 400px;
+    border: unset;
+    border-bottom: 0.5px solid grey;
+    padding-bottom: 1.71em
+}
+.date-input:focus{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #673ab7;
+}
+.date-icon{
+    position: relative;
+    right: 20px;
+    top: 15px;
+}
+
+
+.example-full-width {
+	width: 100%;
+	margin-top: 15px;
+    float: left;
+    margin: 22px;
+    max-width: 400px;
+}
+
+.example-full-width-dashboard{
+	width: 100%;
+	margin-top: 15px;
+    float: left;
+    margin: 22px 0;
+    max-width: 400px;
+}

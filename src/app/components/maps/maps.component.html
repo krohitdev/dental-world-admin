@@ -1,0 +1,33 @@
+<div class="map-container">
+    <div class="form-group search">
+        <input 
+            placeholder="Search for location" 
+            autocorrect="off" 
+            autocapitalize="off" 
+            spellcheck="off" 
+            type="text"
+            class="form-control" 
+            #search 
+            [formControl]="searchControl" 
+            [readonly]="isReadOnly"
+            
+        >
+    </div>
+    <agm-map 
+        (mapClick)="mapClicked($event)" 
+        [latitude]="latitude" 
+        [longitude]="longitude" 
+        [scrollwheel]="true" 
+        [zoom]="zoom"
+        [fitBounds]="true"
+        >
+        <!-- (boundsChange)="checkMarkersInBounds($event)" -->
+        <agm-marker 
+            *ngFor="let data of locations" 
+            [latitude]="data.latlong[1]" 
+            [longitude]="data.latlong[0]"
+            [agmFitBounds]="true"
+            >
+        </agm-marker>
+    </agm-map>
+</div>

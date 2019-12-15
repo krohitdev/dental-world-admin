@@ -1,0 +1,10 @@
+<tag-input 
+    [(ngModel)]='tagsInput'
+    [editable]='tagEditable' 
+    theme='bootstrap'
+    (onTagEdited)="onItemEdit($event)"
+    (onSelect)="onSelected($event)"
+    (onRemove)="onItemRemoved($event)"
+    (onAdd)="onItemAdded($event)"
+    class="tag-area"
+    ></tag-input>

@@ -1,0 +1,11 @@
+<!-- <div class="12hr-example container">
+    <input [ngxTimepicker]="picker" placeholder="Choose a time">
+    <ngx-material-timepicker #picker></ngx-material-timepicker>
+</div> -->
+
+<div class="toggle-example container" >
+    <input [ngxTimepicker]="toggleTimepicker" placeholder="Select Time" class="timepicker" [disableClick]="false" readonly>
+    <ngx-material-timepicker-toggle [for]="toggleTimepicker"></ngx-material-timepicker-toggle>
+    <ngx-material-timepicker #toggleTimepicker></ngx-material-timepicker>
+</div>
+
