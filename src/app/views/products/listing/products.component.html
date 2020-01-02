@@ -1,0 +1,133 @@
+<ngx-spinner [fullScreen]=true type="line-scale" size="default"></ngx-spinner>
+<div [ngSwitch]="ngSwitchState">
+  <div>
+    <ol class="breadcrumb">
+      <div class="breadCrumb">
+        <a [routerLink]="['/dashboard']">Home</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+        <p class="p_tag">Products</p>
+      </div>
+      <app-search class="search" (search)='Search($event)' (clear)="getList('1')"></app-search>
+      <li class="breadcrumb-menu d-md-down-none btn_5">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button class="btn" [routerLink]="['/products/add']">Add</button>
+        </div>
+      </li>
+    </ol>
+  </div>
+
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12">
+        <ngb-tabset (tabChange)="selectTab($event)" #tabset>
+          <ngb-tab id="1" title="All product">
+            <ng-template ngbTabContent>
+              <div>
+                <app-table [data]="users" [moduleName]="'Users'" [fieldName]="fieldName" [settings]="settings"
+                  [deleteIcon]="deleteIcon" [editIcon]="editIcon" [statusIcon]="statusIcon" [viewIcon]="viewIcon"
+                  (updateStatus)="changeStatus($event)" (getInfo)="getParticularUser($event)"
+                  (pageChange)='getList("1",$event)'> </app-table>
+
+                <div class="btn-group download-csv-btn" role="group" aria-label="Button group with nested dropdown">
+                  <button class="btn" (click)="downloadUserCSV()">Download CSV</button>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <!-- <ngb-tab id="2" title="Winner">
+            <ng-template ngbTabContent>
+              <div>
+                <app-table [data]="users" [moduleName]="'Winner'" [fieldName]="winnerFieldName"
+                  [settings]="winnerSettingCols" [deleteIcon]="deleteIcon" [editIcon]="editIcon" [statusIcon]="false"
+                  (updateStatus)="changeStatus($event)" (getInfo)="getParticularUser($event)"
+                  (pageChange)='getWinners($event)'> </app-table>
+              </div>
+            </ng-template>
+          </ngb-tab> -->
+          <!-- <ngb-tab id="3" title="Specific User Details" [disabled]="specificUser">
+            <ng-template ngbTabContent>
+              <div id="Information" class="container_fluid" *ngSwitchCase="'loaded'">
+                <div class="main_Information">
+                  <div class="personal_information">
+                    <h3>Personal Information</h3>
+                    <div class="information_divider"></div>
+                    <div class="personal_information_inner">
+                      <ul>
+                        <li>
+                          <strong>Name:</strong>
+                          <p>{{data.username ? data.username: ''}}</p>
+                        </li>
+                        <li>
+                          <strong>DOB:</strong>
+                          <p>{{data.birthdate | date:'dd-MM-yyyy'}}</p>
+                        </li>
+                        <li>
+                          <strong>Email:</strong>
+                          <p>{{data.email ? data.email: ''}}</p>
+                        </li>
+                        <li>
+                          <strong>Contact Number:</strong>
+                          <p>{{data.mobileNumber ? data.mobileNumber.countryCode +' '+ data.mobileNumber.number : ''}}
+                          </p>
+                        </li>
+                        <li>
+                          <strong>Gender:</strong>
+                          <p>{{data.gender ? data.gender:''}}</p>
+                        </li>
+                        <li>
+                          <strong>City:</strong>
+                          <p>{{data.address_city ? data.address_city:''}}</p>
+                        </li>
+                        <li>
+                          <strong>State:</strong>
+                          <p>{{data.address_state ? data.address_state:''}}</p>
+                        </li>
+                        <li>
+                          <strong>Country:</strong>
+                          <p>{{data.address_country ? data.address_country:''}}</p>
+                        </li>
+                        <li>
+                          <strong>Referral Code:</strong>
+                          <p>{{data.referralCode? data.referralCode : ''}}</p>
+                        </li>
+                        <li>
+                          <strong>Tola Coins:</strong>
+                          <p>{{data.tolaCoins ? data.tolaCoins:''}}</p>
+                        </li>
+                        <li>
+                          <strong>Earned TolaRefferal</strong>
+                          <p>{{ data.earnedTolaRefferal }}</p>
+                        </li>
+                        <li>
+                          <strong>Lost Tola:</strong>
+                          <p>{{ data.lostTola ? data.lostTola : '' }}</p>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="personal_information">
+                    <h3></h3>
+                    <div class="information_divider"></div>
+
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="4" title="User A/c Transfer">
+            <ng-template ngbTabContent>
+              <div>
+                <app-table [data]="users" [moduleName]="'Users'" [fieldName]="bankFieldName" [settings]="bankset"
+                  [deleteIcon]="deleteIcon" [editIcon]="editIcon" [statusIcon]="statusIcon"
+                  (updateStatus)="changeStatus($event)" (pageChange)='getList("4",$event)'> </app-table>
+              </div>
+              <div class="btn-group download-csv-btn" role="group" aria-label="Button group with nested dropdown">
+                <button class="btn" (click)="downloadUserBankData()">Download CSV</button>
+              </div>
+            </ng-template>
+          </ngb-tab> -->
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+
+</div>

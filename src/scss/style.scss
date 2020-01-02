@@ -14,11 +14,10 @@
 // @import "~@coreui/coreui-pro/scss/themes/dark/coreui-dark.scss";
 
 
-.navbar-brand-full{
-    padding-top: 7px
-}
-.btn-winner:hover{
-    color: #fff;
+.navbar-brand-full {}
+
+.btn-winner:hover {
+  color: #fff;
 }
 
 .app,
@@ -28,7 +27,7 @@ app-root {
   flex-direction: column;
   min-height: 100vh;
   // body{
-    
+
   // }
 }
 
@@ -39,23 +38,25 @@ ul.pagination {
   margin: 10px 0px;
 }
 
-.login-bg{
+.login-bg {
   width: 100%;
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-.winner-link:hover{
+.winner-link:hover {
   text-decoration: none;
 }
 
-.animated.fadeIn{
+.animated.fadeIn {
   margin: 1.7em 0;
 }
+
 button:focus {
   outline: none;
 }
+
 button.ngx-material-timepicker-toggle {
   height: 22px;
   width: 22px;

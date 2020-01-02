@@ -31,9 +31,9 @@ export interface NavData {
 
 export const navItems: NavData[] = [
   {
-    name: 'Dashboard',
-    url: '/dashboard',
-    icon: 'icon-speedometer',
+    name: "Dashboard",
+    url: "/dashboard",
+    icon: "icon-speedometer"
     // badge: {
     //   variant: 'info',
     //   text: 'NEW'
@@ -41,19 +41,20 @@ export const navItems: NavData[] = [
   },
   {
     title: true,
-    name: 'Menu'
+    name: "Menu"
   },
+  // {
+  //   name: "Users Overview",
+  //   url: "/users",
+  //   icon: "icon-user"
+  // },
   {
-    name: 'Users Overview',
-    url: '/users',
-    icon: 'icon-user',
+    name: "Products",
+    url: "/products",
+    icon: "icon-products fa fa-product-hunt "
   },
-  
-  
-  
+
   {
     divider: true
-  },
-  
-  
+  }
 ];

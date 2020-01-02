@@ -1,0 +1,111 @@
+<div>
+  <div>
+    <ol class="breadcrumb">
+      <div class="breadCrumb">
+        <a [routerLink]="['/dashboard']">Home</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+        <a [routerLink]="['/advertisements']">Advertisements</a><i class="fa fa-angle-right" aria-hidden="true"></i>
+        <p class="p_tag">{{editable ? 'Update' : 'Add'}}</p>
+      </div>
+      <!-- <app-search class="search"
+              (search)= 'Search($event)'  ></app-search>  -->
+      <!-- <li class="breadcrumb-menu d-md-down-none btn_5">
+                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                    <button class="btn" [routerLink]="['/advertisements/add']">Add</button>
+                 </div>
+              </li> -->
+    </ol>
+  </div>
+
+  <mat-card class="card">
+    <div class="bar" style="margin-top:30px; margin-bottom: 30px;">
+      <!-- <h2 *ngIf="editable">{{ editable ? 'Add Advertisement.' : 'Update Advertisement'}}</h2> -->
+      <h2>{{ editable ? 'Update' : 'Add'}} Products</h2>
+      <div class="border_line"></div>
+      <form role="form" [formGroup]="form">
+
+        <!-- Advertisement Type -->
+        <div class="form-group">
+
+        </div>
+        <!--  Views -->
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input type="number" min="0" matInput placeholder="Product Name" formControlName="productName">
+            <mat-error *ngIf="f.productName.hasError('required')">Product Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Summary" formControlName="summary">
+            <mat-error *ngIf="f.summary.hasError('required')">Summary is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <mat-label>Favorite food</mat-label>
+            <mat-select formControlName="category">
+              <mat-option value="General-Den">General Den</mat-option>
+              <mat-option value="dentometer">Dentometer</mat-option>
+              <mat-option value="Category3">category3</mat-option>
+            </mat-select>
+            <mat-error *ngIf="f.category.hasError('required')">Cateogry is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Sub Category" formControlName="subCategory1">
+            <mat-error *ngIf="f.subCategory1.hasError('required')">Sub Cateogry is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Description" formControlName="description">
+            <mat-error *ngIf="f.description.hasError('required')">Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput placeholder="Price" formControlName="price">
+            <mat-error *ngIf="f.price.hasError('required')">Price is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- <div class="form-group">
+          <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+
+          </mat-form-field>
+        </div> -->
+
+
+
+        <div style="display: block;
+          width: 100%;
+          float: left;">
+          <div class="btn-group btnDiv" role="group" aria-label="Button group with nested dropdown">
+            <button class="btn cancelBtn" [routerLink]="['/advertisements']">
+              Cancel
+            </button>
+          </div>
+
+          <!-- update -->
+          <div class="btn-group btnDiv" role="group " aria-label="Button group with nested dropdown">
+            <button type="button " (click)="onSubmit()" class="btn " [ngClass]="{ btn_disable: form.invalid }"
+              [disabled]="form.invalid">
+              {{ editable ? "Update " : "Save" }}
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </mat-card>
+</div>

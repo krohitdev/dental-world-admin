@@ -5,13 +5,14 @@
 
 export const environment = {
   production: false,
-  ItemperPage: '10',
-  BaseURL: 'http://ec2-13-233-120-194.ap-south-1.compute.amazonaws.com:3333/api/v1',
-  // BaseURL:'http://192.168.3.225:3333/api/v1',
+  ItemperPage: "10",
+  BaseURL: "http://192.168.0.118:4000/api/v1",
   AdminAPI: {
-    user: '/partner/getAllUsers',
-    oneUser: '/partner/showOneUser',
-    winner: '/partner/getAllWinners',
-    quizStat:'/partner/quiz-stat',
+    loginURL: "/admin/login",
+    login: "/users/login-admin",
+    user: "/partner/getAllUsers",
+    oneUser: "/partner/showOneUser",
+    winner: "/partner/getAllWinners",
+    quizStat: "/partner/quiz-stat"
   }
 };
